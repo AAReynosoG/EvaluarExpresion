@@ -53,37 +53,32 @@ public class Main {
         char[] DigFinal = {'3', '9'};
         int i = 0;
         ///
-        if (cadenaChar.length > i) {
+        if (cadenaChar.length > 1) {
+            char ultCaracter = cadenaChar[cadenaChar.length - 1];
             char primerCaracter = cadenaChar[0];
             boolean esVocal = false;
+            boolean esConsonante = false;
+
 
             for (char vocal : vocales) {
                 if (primerCaracter == vocal) {
-                    i = i+1;
                     esVocal = true;
                     break;
                 }
             }
-            if (esVocal) {
-
-            } else {
-                char segundoCaracter = cadenaChar[i];
-                boolean esConsonante = false;
-                for (char cons : consonantes) {
-                    if (primerCaracter == cons && cadenaChar.length == 2){
-                        for (char vocal : vocales) {
-                            if (segundoCaracter == vocal) {
-                                System.out.println("La cadena: " + cadena + "es valida");
-                            }
-                            else {
-                                System.out.println("La cadena es invalida");
-                            }
-                        }
-                    }else {
-                        System.out.println("La cadena ingresada: " + cadena + "es invalida");
-                    }
+             for (char consonante : consonantes) {
+                if (ultCaracter == consonante) {
+                    esConsonante = true;
                     break;
+                }else if ( ultCaracter == consonante){
+                    esConsonante = false;
                 }
+            }
+
+            if (esConsonante == false && esVocal == false) {
+
+            } else if (esConsonante == true && esVocal == true){
+
             }
 
         } else {
