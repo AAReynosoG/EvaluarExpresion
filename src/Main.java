@@ -52,42 +52,38 @@ public class Main {
         char[] Digitos = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         char[] DigFinal = {'3', '9'};
         int i = 0;
-        ///
-        if (cadenaChar.length > i) {
+
+        if (cadenaChar.length > 1) {
             char primerCaracter = cadenaChar[0];
             boolean esVocal = false;
 
             for (char vocal : vocales) {
                 if (primerCaracter == vocal) {
-                    i = i+1;
                     esVocal = true;
                     break;
                 }
             }
             if (esVocal) {
-
-            } else {
-                char segundoCaracter = cadenaChar[i];
-                boolean esConsonante = false;
-                for (char cons : consonantes) {
-                    if (primerCaracter == cons && cadenaChar.length == 2){
-                        for (char vocal : vocales) {
-                            if (segundoCaracter == vocal) {
-                                System.out.println("La cadena: " + cadena + "es valida");
-                            }
-                            else {
-                                System.out.println("La cadena es invalida");
-                            }
-                        }
-                    }else {
-                        System.out.println("La cadena ingresada: " + cadena + "es invalida");
+                boolean esCons = false;
+                char segundoCaracter = cadenaChar[1];
+                for (char cons : consonantes){
+                    if (segundoCaracter == cons && cadenaChar.length == 2){
+                        esCons = true;
+                        break;
                     }
-                    break;
                 }
+                if (esCons){
+                    System.out.println("La cadena: " + "'" + cadena + "'" + " es valida");
+                }
+                else {
+                    
+                }
+            } else {
+                System.out.println("lol");
             }
 
         } else {
-            System.out.println("No se ingreso ninguna cadena");
+            System.out.println("No se ingreso ninguna cadena o la cadena es demasiado corta!");
         }
 
 
