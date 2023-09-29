@@ -4,7 +4,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String[] creditos = {"1.- Carlos Gabriel Romero","2.- Anthony Fuentes","3.- Abraham Alonso Reynoso Gonzalez - 22170060"};
+        String[] creditos = { "1.- Carlos Gabriel Romero", "2.- Anthony Fuentes",
+                "3.- Abraham Alonso Reynoso Gonzalez - 22170060" };
         int opcion;
         String cadena = "";
 
@@ -25,7 +26,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("--CREDITOS--:");
-                    for (String str : creditos){
+                    for (String str : creditos) {
                         System.out.println(str);
                     }
                     System.out.println("--########--:");
@@ -52,7 +53,7 @@ public class Main {
         char[] Digitos = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         char[] DigFinal = {'3', '9'};
         int i = 0;
-        ///
+
         if (cadenaChar.length > 1) {
             char ultCaracter = cadenaChar[cadenaChar.length - 1];
             char primerCaracter = cadenaChar[0];
@@ -66,23 +67,50 @@ public class Main {
                     break;
                 }
             }
-             for (char consonante : consonantes) {
-                if (ultCaracter == consonante) {
+            for (char consonante : consonantes) {
+                if (primerCaracter == consonante) {
                     esConsonante = true;
                     break;
-                }else if ( ultCaracter == consonante){
-                    esConsonante = false;
                 }
             }
 
-            if (esConsonante == false && esVocal == false) {
-
-            } else if (esConsonante == true && esVocal == true){
-
+            if(esVocal == false && esConsonante == false){
+                System.out.println("Inicia con consonante o vocal");
             }
 
+            if (esVocal) {
+                boolean esCons = false;
+                char segundoCaracter = cadenaChar[1];
+                for (char cons : consonantes){
+                    if (segundoCaracter == cons && cadenaChar.length == 2){
+                        esCons = true;
+                        break;
+                    }
+                }
+                if (esCons){
+                    System.out.println("La cadena: " + "'" + cadena + "'" + " es valida");
+                }
+                else {
+                    System.out.println("Tienes que terminar con consonante");
+                }
+            } else if(esConsonante) {
+
+                for (char vocal : vocales){
+                    if (ultCaracter == vocal){
+                       System.out.println("La cadena: " + "'" + cadena + "'" + " es valida");
+                    }else{
+                       System.out.println("Tienes que terminar con vocal");
+                    }
+                }                
+            } else {
+            System.out.println("Inicia con consonante o vocal");
+            }
+
+
+
+
         } else {
-            System.out.println("No se ingreso ninguna cadena");
+            System.out.println("No se ingreso ninguna cadena o la cadena es demasiado corta!");
         }
 
 
