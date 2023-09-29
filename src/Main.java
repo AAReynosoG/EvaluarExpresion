@@ -52,7 +52,7 @@ public class Main {
         char[] DigInicial = {'2', '6'};
         char[] Digitos = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         char[] DigFinal = {'3', '9'};
-        int i = 0;
+        int i = 1;
 
         if (cadenaChar.length > 1) {
             char ultCaracter = cadenaChar[cadenaChar.length - 1];
@@ -91,28 +91,83 @@ public class Main {
                     System.out.println("La cadena: " + "'" + cadena + "'" + " es valida");
                 }
                 else {
-                    System.out.println("Tienes que terminar con consonante");
-                }
-            } else if(esConsonante) {
+                    if (!esCons){
 
-                for (char vocal : vocales){
-                    if (ultCaracter == vocal){
-                       System.out.println("La cadena: " + "'" + cadena + "'" + " es valida");
-                    }else{
-                       System.out.println("Tienes que terminar con vocal");
+                        if (cadenaChar.length >= 5 && esVocal(cadenaChar[0])) {
+                            if (esCaracterEnArreglo(cadenaChar[i], DigInicial)) {
+                                i++;
+                                int digitCount = 0;
+                                while (i < cadenaChar.length && digitCount < 2) {
+                                    if (esCaracterEnArreglo(cadenaChar[i], Digitos)) {
+                                        digitCount++;
+                                    } else {
+                                        break;
+                                    }
+                                    i++;
+                                }
+
+                                if (digitCount >= 2 && i < cadenaChar.length && esCaracterEnArreglo(cadenaChar[i], DigFinal)) {
+                                    i++;
+                                    if (i < cadenaChar.length && esCaracterEnArreglo(cadenaChar[i], consonantes)) {
+                                        System.out.println("La cadena: '" + cadena + "' es válida");
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+
+                        System.out.println("La cadena: '" + cadena + "' es inválida");
                     }
-                }                
-            } else {
-            System.out.println("Inicia con consonante o vocal");
+                }
+            } else if (esConsonante) {
+                if (esVocal(ultCaracter)) {
+                    if (cadenaChar.length == 2) {
+                        System.out.println("La cadena: '" + cadena + "' es valida");
+                    } else if (cadenaChar.length > 2) {
+                        char segundoCaracter = cadenaChar[1];
+                        if (segundoCaracter == '2' || segundoCaracter == '6') {
+                            int ii = 2; 
+                            int countDigits = 0;
+                            while (ii < cadenaChar.length && esCaracterEnArreglo(cadenaChar[ii], Digitos)) {
+                                countDigits++;
+                                ii++;
+                            }
+                            if (countDigits >= 4 && (cadenaChar[ii - 1] == '3' || cadenaChar[ii - 1] == '9')) {
+                                System.out.println("La cadena: '" + cadena + "' es valida");
+                            } else {
+                                System.out.println("La cadena no cumple con el formato de dígitos requerido");
+                            }
+                        } else {
+                            System.out.println("La cadena debe comenzar con un 2 o un 6 después de la consonante inicial");
+                        }
+                    }
+                } else {
+                    System.out.println("Tienes que terminar con vocal");
+                }
             }
-
-
-
-
+                    
         } else {
             System.out.println("No se ingreso ninguna cadena o la cadena es demasiado corta!");
         }
 
+    }
 
+    public static boolean esVocal(char c) {
+        char[] vocales = {'a', 'e', 'i', 'o', 'u'};
+        for (char vocal : vocales) {
+            if (c == vocal) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean esCaracterEnArreglo(char c, char[] arreglo) {
+        for (char elemento : arreglo) {
+            if (c == elemento) {
+                return true;
+            }
+        }
+        return false;
     }
 }
