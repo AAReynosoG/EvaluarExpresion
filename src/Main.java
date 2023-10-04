@@ -47,12 +47,21 @@ public class Main {
     public static void EvaluarCadena(String cadena) {
         char[] cadenaChar = cadena.toCharArray();
 
+        boolean sinMayus = ValidarMinusculas(cadenaChar);
+
         char[] vocales = {'a', 'e', 'i', 'o', 'u'};
         char[] consonantes = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
         char[] DigInicial = {'2', '6'};
         char[] Digitos = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         char[] DigFinal = {'3', '9'};
         int i = 1;
+
+        if(sinMayus){
+
+        }
+        else{
+            System.out.println("La cadena no debe tener mayusculas!");
+        }
 
         if (cadenaChar.length > 1) {
             char ultCaracter = cadenaChar[cadenaChar.length - 1];
@@ -169,5 +178,15 @@ public class Main {
             }
         }
         return false;
+    }
+
+    public static boolean ValidarMinusculas(char[] CadenaChar ){
+
+        for (char caracter : CadenaChar){
+            if(Character.isUpperCase(caracter)){
+                return false;
+            }
+        }
+        return true;
     }
 }
