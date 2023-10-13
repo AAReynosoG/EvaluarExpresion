@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String[] creditos = { "1.- Carlos Gabriel Romero", "2.- Anthony Fuentes",
+        String[] creditos = { "1.- Carlos Gabriel Romero - 22170145", "2.- Anthony Fuentes - 22170187",
                 "3.- Abraham Alonso Reynoso Gonzalez - 22170060" };
-        int opcion;
+        String opcion;
         String cadena = "";
 
         do {
@@ -15,31 +15,31 @@ public class Main {
             System.out.println("2.  Creditos.");
             System.out.println("3.  Salir.");
 
-            opcion = sc.nextInt();
+            opcion = sc.nextLine();
 
             switch (opcion) {
-                case 1:
+                case "1":
                     System.out.println("Ingresa la cadena que deseas validar:");
-                    sc.nextLine();
                     cadena = sc.nextLine();
                     EvaluarCadena(cadena);
                     break;
-                case 2:
+                case "2":
                     System.out.println("--CREDITOS--:");
                     for (String str : creditos) {
                         System.out.println(str);
                     }
                     System.out.println("--########--:");
                     break;
-                case 3:
+                case "3":
                     System.out.println("Hasta luego...!");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Opción no válida.");
                     break;
             }
 
-        } while (opcion != 3);
+        } while (opcion != "3");
 
         sc.close();
     }
@@ -52,7 +52,7 @@ public class Main {
         char[] DigInicial = {'2', '6'};
         char[] Digitos = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         char[] DigFinal = {'3', '9'};
-        int i = 1;
+
 
         if (cadenaChar.length > 1) {
             char ultCaracter = cadenaChar[cadenaChar.length - 1];
@@ -76,6 +76,25 @@ public class Main {
 
             if(esVocal == false && esConsonante == false){
                 System.out.println("Inicia con consonante o vocal");
+            }
+
+           
+            String parteCentral = cadena.substring(1, cadena.length() - 1);
+
+            boolean caracteresInvalidosEnMedio = false;
+        
+            for (int i = 0; i < parteCentral.length(); i++) {
+                char actual = parteCentral.charAt(i);
+        
+                if (Character.isLetter(actual)) { 
+                    caracteresInvalidosEnMedio = true;
+                    break;
+                }
+            }
+        
+            if (caracteresInvalidosEnMedio) {
+                System.out.println("La cadena no debe tener letras adicionales en el medio.");
+                return; 
             }
 
             if (esVocal) {
